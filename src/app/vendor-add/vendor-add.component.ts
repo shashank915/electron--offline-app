@@ -34,7 +34,8 @@ export class VendorAddComponent implements OnInit {
   }
 
   addVendor(form: NgForm){
-    let vendor = this.vendorService.addVendor(form);
+    let vendor;
+    this.vendorService.addVendor(form).subscribe(res => {vendor = res});
     this.isShowingResults = false;
     this.router.navigate(['/vendor-details', vendor.id])
   }

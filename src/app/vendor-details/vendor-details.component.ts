@@ -20,7 +20,7 @@ export class VendorDetailsComponent implements OnInit {
   }
 
   getVendorDetails(id) {
-    this.vendor = this.vendorService.getVendorById(id);
+    this.vendorService.getVendorById(id).subscribe(result => {this.vendor = result});
   }
 
   

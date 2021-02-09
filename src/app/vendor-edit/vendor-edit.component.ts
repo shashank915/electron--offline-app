@@ -36,7 +36,8 @@ export class VendorEditComponent implements OnInit {
     this.getVendor(this.route.snapshot.params['id']);
   }
   getVendor(id) {
-    let vendor = this.service.getVendorById(id);
+    let vendor;
+    this.service.getVendorById(id).subscribe(result => {vendor = result});
     this.id = vendor.id;
     this.vendorFormGroup.setValue({
       'name': vendor.name,

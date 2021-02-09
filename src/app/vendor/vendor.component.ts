@@ -17,17 +17,17 @@ export class VendorComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.vendorService.getVendors().subscribe(res => {
-    //   this.vendors = res;
-    //   this.isLoadingResults=false;
-    //   console.log(this.vendors);
-    // }, err => {
-    //   console.log(err);
-    //   this.isLoadingResults = false;
-    // })
+    this.vendorService.getVendors().subscribe(res => {
+      this.vendors = res;
+      this.isLoadingResults=false;
+      console.log(this.vendors);
+    }, err => {
+      console.log(err);
+      this.isLoadingResults = false;
+    })
 
 
-    this.vendors = this.vendorService.getVendors();
+    // this.vendors = this.vendorService.getVendors();
     this.isLoadingResults = false;
   }
 

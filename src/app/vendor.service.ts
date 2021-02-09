@@ -9,22 +9,23 @@ import { Vendor } from './model/vendor';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "localhost:8080/api/v1/products";
+const apiUrl = "http://localhost:8080/api/v1/vendors";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class VendorService {
 
-  vendors: Vendor[] = [];
+  // vendors: Vendor[] = [];
 
   constructor(private httpClient: HttpClient) { 
-    this.vendors.push({'id': '1', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
-    this.vendors.push({'id': '2', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
-    this.vendors.push({'id': '3', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
-    this.vendors.push({'id': '4', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
-    this.vendors.push({'id': '5', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
-    this.vendors.push({'id': '6', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
+    // this.vendors.push({'id': '1', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
+    // this.vendors.push({'id': '2', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
+    // this.vendors.push({'id': '3', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
+    // this.vendors.push({'id': '4', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
+    // this.vendors.push({'id': '5', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
+    // this.vendors.push({'id': '6', 'name': 'Shashank', 'mobile': 8240095059, 'address': 'Bangalore', 'email': 'shashank@xyz.com', 'gstNo': '12345'})
 
   }
 
@@ -39,79 +40,80 @@ export class VendorService {
     };
   }
 
-  // getVendors(): Observable<Vendor[]>{
-  //   let url = apiUrl;
-  //   return this.httpClient.get<Vendor[]>(url)
-  //   .pipe(
-  //     tap(vendors => console.log('fetched vendors')),
-  //     catchError(this.handleError('getVendors', []))
-  //   );
-  // }
-
-  // getVendorById(id: string): Observable<Vendor>{
-  //   let url = apiUrl + "/" + id;
-  //   return this.httpClient.get<Vendor>(url)
-  //   .pipe(
-  //     tap(vendor => console.log('fetched vendors')),
-  //     catchError(this.handleError<Vendor>('getVendorById id=${id}'))
-  //   );
-  // }
-
-  // addVendor(vendor: Vendor): Observable<Vendor>{
-  //   let url = apiUrl + "/add";
-  //   return this.httpClient.post<Vendor>(url, vendor, httpOptions)
-  //   .pipe(
-  //     tap((vendor: Vendor) => console.log(`added vendor w/ id=${vendor.id}`)),
-  //     catchError(this.handleError<Vendor>('addProduct'))
-  //   );
-  // }
-
-  // updateVendor(vendor: Vendor): Observable<Vendor>{
-  //   let url = apiUrl + "/update";
-  //   return this.httpClient.put<Vendor>(url, vendor, httpOptions)
-  //   .pipe(
-  //     tap((vendor: Vendor) => console.log(`added vendor w/ id=${vendor.id}`)),
-  //     catchError(this.handleError<Vendor>('addProduct'))
-  //   );
-  // }
-
-
-
-  getVendors(): Vendor[]{
-    // let url = apiUrl;
-    // return this.httpClient.get<Vendor[]>(url)
-    // .pipe(
-    //   tap(vendors => console.log('fetched vendors')),
-    //   catchError(this.handleError('getVendors', []))
-    // );
-
-    return this.vendors;
+  getVendors(): Observable<Vendor[]>{
+    let url = apiUrl;
+    return this.httpClient.get<Vendor[]>(url)
+    .pipe(
+      tap(vendors => console.log('fetched vendors')),
+      catchError(this.handleError('getVendors', []))
+    );
   }
 
-  getVendorById(id: string): Vendor{
-    let filteredVendors = this.vendors.filter(data => data.id == id);
-    if(filteredVendors.length === 0){
-      console.log('Vendor Not found with id: {}', id);
-    }
-    return filteredVendors[0];
+  getVendorById(id: string): Observable<Vendor>{
+    let url = apiUrl + "/" + id;
+    return this.httpClient.get<Vendor>(url)
+    .pipe(
+      tap(vendor => console.log('fetched vendors')),
+      catchError(this.handleError<Vendor>('getVendorById id=${id}'))
+    );
   }
 
-  addVendor(vendor: any): Vendor{
-    vendor.id = this.vendors.length;
-    this.vendors.push(vendor);
-    return vendor;
+  addVendor(vendor: any): Observable<Vendor>{
+    let url = apiUrl + "/add";
+    return this.httpClient.post<Vendor>(url, vendor, httpOptions)
+    .pipe(
+      tap((vendor: Vendor) => console.log(`added vendor w/ id=${vendor.id}`)),
+      catchError(this.handleError<Vendor>('addProduct'))
+    );
   }
 
-  updateVendor(vendor: any, id: string): Vendor{
-    // let filteredVendors = this.vendors.filter(data => data.id == id);
-    let existingVendorIndex = this.vendors.findIndex(data => data.id == id);
-    if(existingVendorIndex == -1){
-      console.log('Vendor Not found with id: {}', vendor.id);
-    }
+  updateVendor(vendor: any, id: string): Observable<Vendor>{
+    let url = apiUrl + "/update";
     vendor.id = id;
-    this.vendors[existingVendorIndex] = vendor;
-    return vendor;
+    return this.httpClient.put<Vendor>(url, vendor, httpOptions)
+    .pipe(
+      tap((vendor: Vendor) => console.log(`added vendor w/ id=${vendor.id}`)),
+      catchError(this.handleError<Vendor>('addProduct'))
+    );
   }
+
+
+
+  // getVendors(): Vendor[]{
+  //   // let url = apiUrl;
+  //   // return this.httpClient.get<Vendor[]>(url)
+  //   // .pipe(
+  //   //   tap(vendors => console.log('fetched vendors')),
+  //   //   catchError(this.handleError('getVendors', []))
+  //   // );
+
+  //   return this.vendors;
+  // }
+
+  // getVendorById(id: string): Vendor{
+  //   let filteredVendors = this.vendors.filter(data => data.id == id);
+  //   if(filteredVendors.length === 0){
+  //     console.log('Vendor Not found with id: {}', id);
+  //   }
+  //   return filteredVendors[0];
+  // }
+
+  // addVendor(vendor: any): Vendor{
+  //   vendor.id = this.vendors.length;
+  //   this.vendors.push(vendor);
+  //   return vendor;
+  // }
+
+  // updateVendor(vendor: any, id: string): Vendor{
+  //   // let filteredVendors = this.vendors.filter(data => data.id == id);
+  //   let existingVendorIndex = this.vendors.findIndex(data => data.id == id);
+  //   if(existingVendorIndex == -1){
+  //     console.log('Vendor Not found with id: {}', vendor.id);
+  //   }
+  //   vendor.id = id;
+  //   this.vendors[existingVendorIndex] = vendor;
+  //   return vendor;
+  // }
 
   // deleteVendor(id: string){
   //   this.vendors.
