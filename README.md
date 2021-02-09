@@ -2,9 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
-## Development server
+## Build & Run
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Web Browser: 
+- Run `npm run start` for a dev server.
+- Run `npm run start --prod ` for a production server.
+- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+# Electron
+- Run `npm run start:electron` and it will open a new electron window in your OS.
+
+## Packaging
+# Windows:
+- Run `npm run dist:win`
+- This command creates a new folder in your project root folder called `vendor-app-win32-x64`
+# MacOS:
+- Run `npm run dist:mac`
+- This command creates a new folder in your project root folder called `vendor-app-darwin-x64`
+# Linux:
+- Run `npm run dist:linux`
 
 ## Code scaffolding
 
