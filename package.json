@@ -13,7 +13,9 @@
     "start:electron": "ng build --base-href ./ && electron .",
     "electron": "electron .",
     "electron-build": "ng build --prod && npm run electron .",
-    "dist": "electron-packager . vendor-app --platform=darwin"
+    "dist:mac": "electron-packager . vendor-app --platform=darwin",
+    "dist:win": "electron-packager . vendor-app --platform=win32",
+    "dist:linux": "electron-packager . vendor-app --platform=deb"
   },
   "private": true,
   "dependencies": {
