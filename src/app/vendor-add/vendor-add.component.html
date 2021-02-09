@@ -1,7 +1,7 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade"
-       *ngIf="isLoadingResults">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+       *ngIf="isShowingResults">
+    <mat-spinner *ngIf="isShowingResults"></mat-spinner>
   </div>
   <div class="button-row">
     <a mat-flat-button color="primary" [routerLink]="['/vendors']"><mat-icon>list</mat-icon></a>
@@ -11,7 +11,7 @@
       
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Vendor Name" formControlName="name"
-               [errorStateMatcher]="matcher">
+               >
         <mat-error>
           <span *ngIf="!vendorForm.get('name').valid && vendorForm.get('name').touched">Please enter Vendor's Name</span>
         </mat-error>
@@ -19,7 +19,7 @@
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Vendor Mobile" formControlName="mobile"
-               [errorStateMatcher]="matcher">
+               >
         <mat-error>
           <span *ngIf="!vendorForm.get('mobile').valid && vendorForm.get('mobile').touched">Please enter Vendor's Mobile No.</span>
         </mat-error>
@@ -27,7 +27,7 @@
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Vendor Email" formControlName="email"
-               [errorStateMatcher]="matcher">
+               >
         <mat-error>
           <span *ngIf="!vendorForm.get('email').valid && vendorForm.get('email').touched">Please enter Vendor's Email Id.</span>
         </mat-error>
@@ -35,7 +35,7 @@
       
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Vendor Address" formControlName="address"
-               [errorStateMatcher]="matcher">
+               >
         <mat-error>
           <span *ngIf="!vendorForm.get('address').valid && vendorForm.get('address').touched">Please enter Vendor's Address</span>
         </mat-error>
@@ -43,7 +43,7 @@
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Vendor GST No." formControlName="gstNo"
-               [errorStateMatcher]="matcher">
+               >
         <mat-error>
           <span *ngIf="!vendorForm.get('gstNo').valid && vendorForm.get('gstNo').touched">Please enter Vendor's GST No.</span>
         </mat-error>
