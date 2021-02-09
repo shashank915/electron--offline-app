@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VendorService } from '../vendor.service';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { Vendor } from '../model/vendor';
 
 @Component({
   selector: 'app-vendor-add',
@@ -11,6 +12,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 export class VendorAddComponent implements OnInit {
 
   vendorForm: FormGroup;
+  vendor: Vendor;
   
   name = '';
   mobile = '';
@@ -34,10 +36,9 @@ export class VendorAddComponent implements OnInit {
   }
 
   addVendor(form: NgForm){
-    let vendor;
-    this.vendorService.addVendor(form).subscribe(res => {vendor = res});
+    this.vendorService.addVendor(form).subscribe(res => {this.vendor = res});
     this.isShowingResults = false;
-    this.router.navigate(['/vendor-details', vendor.id])
+    this.router.navigate(['/vendor-details', this.vendor.id])
   }
 
 }

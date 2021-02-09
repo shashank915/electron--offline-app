@@ -62,8 +62,8 @@ export class VendorService {
     let url = apiUrl + "/add";
     return this.httpClient.post<Vendor>(url, vendor, httpOptions)
     .pipe(
-      tap((vendor: Vendor) => console.log(`added vendor w/ id=${vendor.id}`)),
-      catchError(this.handleError<Vendor>('addProduct'))
+      tap((vendor: Vendor) => console.log('added vendor with id=${vendor.id}')),
+      catchError(this.handleError<Vendor>('addVendor'))
     );
   }
 
@@ -72,8 +72,8 @@ export class VendorService {
     vendor.id = id;
     return this.httpClient.put<Vendor>(url, vendor, httpOptions)
     .pipe(
-      tap((vendor: Vendor) => console.log(`added vendor w/ id=${vendor.id}`)),
-      catchError(this.handleError<Vendor>('addProduct'))
+      tap((vendor: Vendor) => console.log('added vendor w/ id=${vendor.id}')),
+      catchError(this.handleError<Vendor>('updateVendor'))
     );
   }
 

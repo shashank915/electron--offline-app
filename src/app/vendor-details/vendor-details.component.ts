@@ -20,7 +20,12 @@ export class VendorDetailsComponent implements OnInit {
   }
 
   getVendorDetails(id) {
-    this.vendorService.getVendorById(id).subscribe(result => {this.vendor = result});
+    this.vendorService.getVendorById(id).subscribe((result: Vendor) => 
+    {
+      this.vendor = result;
+      console.log("Fetched Vendor:: {}", this.vendor);
+    });
+    
   }
 
   

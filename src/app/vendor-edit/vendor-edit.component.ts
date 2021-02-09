@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { VendorService } from '../vendor.service';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { Vendor } from '../model/vendor';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -17,6 +18,7 @@ export class VendorEditComponent implements OnInit {
   email = '';
   address = '';
   gstNo = '';
+  vendor: Vendor;
 
   isShowingResult = true;
 
@@ -36,21 +38,23 @@ export class VendorEditComponent implements OnInit {
     this.getVendor(this.route.snapshot.params['id']);
   }
   getVendor(id) {
-    let vendor;
-    this.service.getVendorById(id).subscribe(result => {vendor = result});
-    this.id = vendor.id;
-    this.vendorFormGroup.setValue({
-      'name': vendor.name,
-      'mobile': vendor.mobile,
-      'email': vendor.email,
-      'address': vendor.address,
-      'gstNo': vendor.gstNo,
+    this.service.getVendorById(id).subscribe((result:Vendor) => {
+      this.vendor = result
+      this.id = this.vendor.id;
+      this.vendorFormGroup.setValue({
+        'name': this.vendor.name,
+        'mobile': this.vendor.mobile,
+        'email': this.vendor.email,
+        'address': this.vendor.address,
+        'gstNo': this.vendor.gstNo,
+      });
     });
+    
   }
 
   updateVendor(form: NgForm){
     // form.setValue({id: this.id});
-    this.service.updateVendor(form, this.id);
+    this.service.updateVendor(form, this.id).subscribe();
     this.isShowingResult = false;
     this.router.navigate(['/vendor-details', this.id])
   }
